@@ -53,7 +53,8 @@ describe('Array', function () {
         });
         it('should create a string with manipulated content', function () {
             var c = ['i', 't', 'c', 'l', 'u', 'b']; // do not touch this
-            c[2]= "C";// c.join("").replace("c","C"); sehr gut
+            c[2]= "C";
+            // c.join("").replace("c","C"); sehr gut
             c=c.join("");
             c.should.equal("itClub");
         });
@@ -70,7 +71,7 @@ describe('Array', function () {
     describe('#length', function () {
         it('should give the number of elements in the array', function () {
             var c = ["it", "club", "schweiz", "KZO"]; // do not touch this
-            c.push("a");
+            c.push("araba");
             c.length.should.equal(5);
         });
     });
@@ -111,7 +112,8 @@ describe('Array', function () {
         it('should insert item at the end of the array', function () {
             var c = [10]; // do not touch this!
             var processed = c; 
-            processed.should.be.deepEqual([10,11,12]);
+           c.push(11,12);
+        processed.should.be.deepEqual([10,11,12]);
         });        
     });
     
@@ -119,6 +121,7 @@ describe('Array', function () {
         it('should remove item at the front of the array', function () {
             var c = [10, 12, 13]; // do not touch this!
             var processed = c; 
+            c.shift();
             processed.should.be.deepEqual([12, 13]);
         });        
     });
@@ -127,11 +130,13 @@ describe('Array', function () {
         it('should insert item in the begin of the array', function () {
             var c = [12, 13]; // do not touch this!
             var processed = c; 
+            c.unshift(10);
             processed.should.be.deepEqual([10, 12, 13]);
         });  
         it('should insert item as the first item in the array', function () {
             var c = [12, 13]; // do not touch this!
-            var processed = c; // manuîpulate only this line
+            var processed = c;// manuîpulate only this line
+            c.unshift(1,10,13);
             processed.should.be.deepEqual([1, 10, 13, 12, 13]);
         });          
     });
@@ -140,11 +145,15 @@ describe('Array', function () {
         it('should change the order of items', function () {
             var c = [2, 101, 55]; // do not touch this!
             var processed = c; 
+            c.reverse();
             processed.should.be.deepEqual([55, 101, 2]);
         });        
         it('should reverse a string', function () {
             var c = "bulcti"; // do not touch this!
-            var processed = c; 
+            var processed = c=c.split('').reverse().join('');
+            //c=c.split(''); warum c=c.split???
+            //c.reverse();
+            //c=c.join('');
             processed.should.be.deepEqual("itclub");
         });        
     });
