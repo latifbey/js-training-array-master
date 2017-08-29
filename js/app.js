@@ -179,7 +179,7 @@ describe('Array', function () {
             c.pop();
             c.reverse();
             c.shift();
-            
+            c.unshift('mehmet');
             c.should.be.deepEqual(['mehmet', 'ferdi']);
         });
     });
