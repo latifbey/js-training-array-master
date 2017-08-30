@@ -12,7 +12,8 @@ describe('Array', function () {
     describe('#arithmetic', function () {
         it('should result the right number', function () {
             var c = [3, 4, 9, 12];
-            c[0]= c[0]+1;
+          c.shift();
+            //  c[0]= c[0]+1;
             c[0].should.equal(4);
         });
         it('should be equal to the second item', function () {
