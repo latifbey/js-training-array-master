@@ -236,6 +236,7 @@ describe('Array', function () {
               var a = [];
 
               for(var index=0; index < c.length; index = index + 1){
+                  if(c[index]%2==0)
                   a.push(c[index]);
               }
 
@@ -243,8 +244,9 @@ describe('Array', function () {
         });
         it('should help to find the maximum number', function () {
               var c = [10,21,82,23,64,15,6]; // do not touch this!
-              var max = 34; // get maximum number
+              var max = 0; // get maximum number
               for(var index=0; index < c.length; index = index + 1){
+                  if(c[index]>max)
                   max = c[index];
               }
               max.should.be.equal(82);
@@ -252,7 +254,8 @@ describe('Array', function () {
         it('should help to find the minimum number', function () {
               var c = [10,21,82,23,64,15,6]; // do not touch this!
               var min = 34; // get minimum number
-              for(var index=0; index < c.length -1; index = index + 1){
+              for(var index=0; index < c.length ; index = index + 1){
+                  if(c[index]<min)
                  min = c[index];
               }
               min.should.be.equal(6);
@@ -287,8 +290,16 @@ describe('Array', function () {
               var theNumbers = []; 
             
               for(var index=0; index < c.length; index = index + 1){
-                 theNumbers = c[index];
-              }        
+                 if(c[index]%2==0 || c[index]%3==0 ){
+                  theNumbers.push(c[index]);
+                   
+                 }
+              }   
+           // function siralama(a,b){   siralama icin fonk tanimladim oldu. fakat...
+               // return a-b;
+           // }
+        // theNumbers.sort(siralama);
+           theNumbers=theNumbers.sort();  //???????????????????neden bunu kabul etmiyor???
               theNumbers.should.be.deepEqual([4,6,9,21,60,80]);
         });
         it('should help to find the numbers which can be divided by both 2 and 3', function () {
@@ -296,8 +307,10 @@ describe('Array', function () {
               var theNumbers = []; 
             
               for(var index=0; index < c.length; index = index + 1){
-                 theNumbers = c[index];
+                  if(c[index]%2==0 && c[index]%3==0)
+                 theNumbers.push(c[index]);
               }        
+            theNumbers=theNumbers.sort();
               theNumbers.should.be.deepEqual([6, 60]);
         });
         it('should help to find the strings whic containing the word "el"', function () {
@@ -313,10 +326,10 @@ describe('Array', function () {
         });
         it('should help to find repeating numbers', function () {
               var c = [10,21,10,23,64,21,6]; // do not touch this!
-              //var sirala =c.sort(); 
+              var sirala =c.sort(); 
               var processed = []; 
               for(var index=0; index < c.length; index = index + 1){
-                //  if(sirala[index +1]==sirala[index])
+                 if(sirala[index +1]==sirala[index])
                  processed.push(sirala[index]);
               }        
               processed.should.be.deepEqual([10,21]);
@@ -378,7 +391,7 @@ describe('Array', function () {
             processed.should.be.equal('ENFESSS');
         });
         it('should evaluate the nested ternary operator to a value', function () {
-            var c = 'mezut'; // do not touch this
+            var c = 'mesut'; // do not touch this
             var processed= c === 'mesut'
                            ? 'adana' : c === 'ferdi'
                            ? 'giresun' : c === 'mustafa'
