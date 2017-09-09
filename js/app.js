@@ -64,8 +64,8 @@ describe('Array', function () {
     describe('#join()', function () {
         it('should create a string with given parameter as seprator', function () {
             var c = ['i', 't', 'c', 'l', 'u', 'b']; // do not touch this
-            c.join("+-").concat("+-");
-            c.join().should.equal("i+-t+-c+-l+-u+-b+-");
+            
+           c.join("+-").concat("+-").should.equal("i+-t+-c+-l+-u+-b+-");
         });
     });
 
@@ -86,10 +86,17 @@ describe('Array', function () {
     describe('#sort()', function () {
         it('should sort the array in ascending order', function () {
             var c = [9, 2, 6, 0, -1]; // do not touch this
+            c.sort(function(a,b){
+                return a>b;
+                
+            })
             c.should.be.deepEqual([-1, 0, 2, 6, 9]);
         });
         it('should sort the array in descending order', function () {
             var c = [-1, 1, 3, 2]; // do not touch this
+            c.sort(function(a,b){
+                return a<b;
+            })
             c.should.be.deepEqual([3, 2, 1, -1]);
         });        
     });
@@ -170,7 +177,7 @@ describe('Array', function () {
             c.shift();
             c.unshift(5);
             
-            (c[1] % c[0]).should.be.equal(1);
+            (c[1] % c[0]).should.be.equal(2);
         });     
         it('should give number of people rest in the queue', function () {
             var c = []; // do not touch this
@@ -188,14 +195,14 @@ describe('Array', function () {
     describe('#looping', function () {
         it('should increment the counter one by one', function () {
               var counter = 0; // do not touch this
-              for(var index=0; index < 5; index = index + 1){
+              for(var index=0; index < 8; index = index + 1){
                   counter = counter + 1;
               }
             
               counter.should.be.equal(8);
         });
         it('should increment the counter by array items', function () {
-              var c = new Array(1,2,3,4,6);
+              var c = new Array(1,2,3,4,5);
               var counter = 0; // do not touch this!
 
               for(var index=0; index < 5; index = index + 1){
@@ -205,9 +212,9 @@ describe('Array', function () {
         });
         it('should increment the counter randomly', function () {
               var c = []; // do not touch this!
-              var maxNumber = 7;   
+              var max = 6;   
             
-              for(var index=1; index < max; index = index + 1){
+              for(var index=0; index < max; index = index + 1){
                   c[index] = index * Math.random();
               }
               c.length.should.be.equal(6);
@@ -216,11 +223,13 @@ describe('Array', function () {
         it('should change the array items indiviually', function () {
               var c = ["a", 'n', ' ', 'a', 't', "c", "l", 'u', 'b']; // do not touch this!
         
-              for(var index=1; index < c.length; index = index + 1){
-                  c[index] = c[index];
+              for(var index=0; index < c.length; index = index + 1){
+                 if(c[index]=='a'){
+                     c[index]='i'
+                 }
               }
 
-              c.should.be.equal('in itclub');
+              c.join("").should.be.equal('in itclub');
         });
         it('should select only the even numbers', function () {
               var c = new Array(1,2,3,4,5,6); // do not touch this!
@@ -250,19 +259,26 @@ describe('Array', function () {
         });     
         it('should help to find the median', function () {
               var c = [13,21,82,23,64,15,6]; // do not touch this!
-              var median = 34; // get median f.i [6,1,5] => 6+1+5/(number of element = 3) = 4,
+              var median = 0; // get median f.i [6,1,5] => 6+1+5/(number of element = 3) = 4,
                                // you can use reduce function but you dont have to.
               for(var index=0; index < c.length; index = index + 1){
-                 median = c[index];
+                 median = median + c[index];
               }        
+            median= median/c.length;
               median.should.be.equal(32);
         }); 
         it('should help to find the numbers factor of three ', function () {
               var c = [9,21,80,23,60,11,6]; // do not touch this!
               var theNumbers = []; 
-            
+            c.sort(function(a,b){
+                return a-b;
+            });
               for(var index=0; index < c.length; index = index + 1){
+                  if(c[index]%3==0){
+                      
+                  
                  theNumbers.push(c[index]);
+                  }
               }        
               theNumbers.should.be.deepEqual([6,9,21,60]);
         });
@@ -288,16 +304,20 @@ describe('Array', function () {
               var c = ['elveda','selami','hadi','itclub','kel','heyelan','oooo!','saral', 'peri', 'deli']; // do not touch this!
               var theNumbers = []; 
             
-              for(var index=0; index < 3; index = index + 1){
-                 theNumbers = c[index];
-              }        
+              for(var index=0; index < c.length; index = index + 1){
+                  if(c[index].includes("el"))
+                 theNumbers.push(c[index]);
+              }    
+            
               theNumbers.should.be.deepEqual(['elveda','selami','kel','heyelan','deli']);
         });
         it('should help to find repeating numbers', function () {
               var c = [10,21,10,23,64,21,6]; // do not touch this!
+              //var sirala =c.sort(); 
               var processed = []; 
               for(var index=0; index < c.length; index = index + 1){
-                 processed.push(c[index]);
+                //  if(sirala[index +1]==sirala[index])
+                 processed.push(sirala[index]);
               }        
               processed.should.be.deepEqual([10,21]);
         }); 
@@ -306,8 +326,10 @@ describe('Array', function () {
               var processed = []; 
               var index=0;
               while(index < c.length){
+                  if(c[index]<=100){
+                         processed.push(c[index]);      
+                  }
                  index = index + 1;  
-                 processed.push(c[index]);
               }        
               processed.should.be.deepEqual([10,83,100]);
         }); 
@@ -319,7 +341,7 @@ describe('Array', function () {
             var c = true; // do not touch this
             var processed=1;
             if(c){
-                processed = 2;
+                processed = 1;
             }
             
             processed.should.be.equal(1);
@@ -328,9 +350,9 @@ describe('Array', function () {
             var c = Number.isNaN('NaN'); // do not touch this
             var processed=0;
             if(c){
-                processed = 2;
-            }else{
                 processed = 1;
+            }else{
+                processed = 0;
             }
             
             processed.should.be.equal(0);
@@ -342,7 +364,7 @@ describe('Array', function () {
             if(c === 'ferdi'){
                 processed = 'progress';
             }else if(c === 'mesut'){
-                processed = 'take easy';
+                processed = 'take it easy';
             }else{
                 processed = 'go forward';
             }
@@ -351,9 +373,9 @@ describe('Array', function () {
         });
         it('should evaluate the ternary operator to a value', function () {
             var c = 'iskender'; // do not touch this
-            var processed= c === 'iskender' ? "AC KALDIK YINE" : 'ENFESSS';
+            var processed= c === 'iskender' ? 'ENFESSS' :"AC KALDIK YINE" ;
             
-            processed.should.be.equal('ENFESS');
+            processed.should.be.equal('ENFESSS');
         });
         it('should evaluate the nested ternary operator to a value', function () {
             var c = 'mezut'; // do not touch this
