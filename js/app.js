@@ -299,7 +299,7 @@ describe('Array', function () {
                // return a-b;
            // }
         // theNumbers.sort(siralama);
-           theNumbers=theNumbers.sort();  //???????????????????neden bunu kabul etmiyor???
+           theNumbers=theNumbers.sort();  ///???????????????????neden bunu kabul etmiyor???
               theNumbers.should.be.deepEqual([4,6,9,21,60,80]);
         });
         it('should help to find the numbers which can be divided by both 2 and 3', function () {
